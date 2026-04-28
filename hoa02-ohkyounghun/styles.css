@@ -1,0 +1,422 @@
+/* =====================
+   BASE LAYOUT
+   ===================== */
+
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #222;
+    --surface-color: white;
+    --header-color: #f9f9f9;
+    --border-color: #ddd;
+    --accent-color: #0077ff;
+    --btn-bg: #333;
+    --btn-color: white;
+}
+
+body.dark-theme {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --surface-color: #2a2a2a;
+    --header-color: #242424;
+    --border-color: #444;
+    --accent-color: #4da3ff;
+    --btn-bg: #f0f0f0;
+    --btn-color: #333;
+}
+
+/* Make body a vertical flex container so header, nav, main, footer stack on top of each other.
+   min-height: 100vh means the page is always at least as tall as the screen,
+   so the footer never floats up when content is short. */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    /* Remove default browser margin */
+}
+
+/* =====================
+   SEMANTIC TAGS
+   ===================== */
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--header-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Make nav links sit side by side using flex */
+nav {
+    display: flex;
+    justify-content: center;
+    /* Center the links horizontally */
+    gap: 30px;
+    /* Space between each link */
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+    /* up down , left right */
+}
+
+#theme-btn {
+    font-size: 1.5rem;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 48px;
+    height: 38px;
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    border-radius: 8px;
+    border: none;
+}
+
+/* Default link style - no underline */
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/* Active link = the page you are currently on.
+   Added class="active" in HTML on the current page's link. */
+nav a.active {
+    color: var(--accent-color);
+    font-weight: bold;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 2px;
+}
+
+/* Keep visited links the same color (browsers turn them purple by default) */
+nav a:visited {
+    color: var(--text-color);
+}
+
+/* Change color when mouse hovers over a link */
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* flex: 1 means main takes up all leftover space,
+   which pushes the footer down to the bottom of the page */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    /* Center the content inside */
+    padding: 40px 20px;
+}
+
+/* =====================
+   HOME PAGE LAYOUT
+   ===================== */
+.home-section {
+    display: flex;
+    justify-content: start;
+    /* ← flex-start 에서 변경 */
+    gap: 50px;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.home-section img {
+    width: 300px;
+    max-height: 430px;
+    border-radius: 10px;
+}
+
+
+/* =====================
+   CARD (section)
+   ===================== */
+
+/* Every section looks like a white card */
+section {
+    margin-bottom: 30px;
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* =====================
+   PROJECTS PAGE
+   ===================== */
+.projects-container {
+    width: 90%;
+    max-width: 1100px;
+}
+
+.project-summary {
+    margin-top: 10px;
+    color: rgb(117, 109, 109);
+    font-size: 16px;
+}
+
+/* GitHub button - outlined style by default */
+.github-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Fill with blue when hovered */
+.github-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--surface-color);
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 8px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.filter-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* =====================
+   SKILLS PAGE
+   ===================== */
+
+/* 2-column grid layout for skill sections */
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two equal columns */
+    gap: 10px 40px;
+    /* Row gap 10px, column gap 40px */
+}
+
+.skills-grid section {
+    border: 1px solid var(--border-color);
+}
+
+/* Each skill row: name on the left, badge on the right */
+.skills-grid li {
+    display: flex;
+    justify-content: space-between;
+    /* Push name and badge to opposite ends */
+    align-items: flex-start;
+    padding: 10px;
+    background: var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    list-style: none;
+
+    /* Remove the default bullet point */
+}
+
+/* =====================
+   SKILL LEVEL BADGES
+   ===================== */
+
+.badge {
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    /* Pill shape */
+    white-space: nowrap;
+    /* Never wrap to next line */
+}
+
+/* Blue = Beginner */
+.badge.beginner {
+    background-color: #d0ebff;
+    color: #1971c2;
+}
+
+/* Green = Intermediate */
+.badge.intermediate {
+    background-color: #d3f9d8;
+    color: #2f9e44;
+}
+
+/* Orange = Advanced */
+.badge.advanced {
+    background-color: #ffe8cc;
+    color: #e67700;
+}
+
+
+/* =====================
+   CONTACT PAGE
+   ===================== */
+
+/* Keep the form centered and not too wide */
+.contact-container {
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Each .form-group stacks its label on top of its input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: var(--text-color);
+}
+
+/* Same style for both text inputs and the textarea */
+.form-group input,
+.form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    /* Use same font as the rest of the page */
+    background-color: var(--surface-color);
+    outline: none;
+    /* Remove the default browser focus ring */
+}
+
+/* Blue border when the user clicks on an input */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    background-color: var(--surface-color);
+}
+
+/* Submit button */
+.submit-btn {
+    padding: 10px 24px;
+    background-color: var(--accent-color);
+    color: var(--surface-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    /* Show a hand cursor on hover */
+}
+
+/* =====================
+   GITHUB PAGE
+   ===================== */
+
+#profile {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#profile img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.github-container #repos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 40px;
+}
+
+#repos section h3 a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+#repos section h3 a:hover {
+    color: var(--accent-color);
+}
+
+#repos-title {
+    grid-column: 1 / -1;
+}
+
+/* =====================
+   RESPONSIVE - MOBILE (0 ~ 480px)
+   ===================== */
+
+@media (max-width: 480px) {
+
+    /* Stack nav links vertically on small screens */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .home-section {
+        flex-direction: column
+    }
+
+    .home-section img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Switch skills from 2 columns to 1 column */
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .github-container #repos {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================
+   RESPONSIVE - TABLET (481px ~ 768px)
+   ===================== */
+
+@media (min-width: 481px) and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .home-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}
